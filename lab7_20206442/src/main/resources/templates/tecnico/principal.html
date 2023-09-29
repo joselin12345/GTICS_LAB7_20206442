@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/fragmentos :: cabecera('Formulario')">
+</head>
+<body>
+<div th:replace="fragmentos/fragmentos :: botones"></div>
+
+<div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom" style="align-content: center">Lista de sitios</h1>
+    <div class="d-flex mt-3 mb-4">
+        <a class="btn btn-primary" th:href="@{'/tecnico/new'}">Nuevo Producto</a>
+        <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${msg != null}" th:text="${msg}">
+        A simple success alert—check it out!
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dni</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tecnico : ${listaTecnicos}">
+            <td th:text="${tecnico.firstName}"></td>
+            <td th:text="${tecnico.lastName} "></td>
+            <td th:text="${tecnico.dni}"></td>
+            <td th:text="${tecnico.phone}"></td>
+            <td th:text="${tecnico.age}"></td>
+            <td><a class="btn btn-primary"
+                   th:href="@{'/tecnico/edit' + '?id=' + ${tecnico.technicianID}}">Editar</a>
+            </td>
+            <td><a class="btn btn-danger"
+                   th:href="@{'/tecnico/delete' + '?id=' + ${tecnico.technicianID}}">Borrar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragmentos/fragmentos :: script"></div>
+</body>
+</html>
